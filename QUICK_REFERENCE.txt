@@ -1,0 +1,174 @@
+================================================================================
+                  PISTACHIO IMAGE MINING - QUICK REFERENCE
+================================================================================
+
+PROJECT STATUS: COMPLETED SUCCESSFULLY
+
+================================================================================
+KEY RESULTS
+================================================================================
+
+Dataset Processed:
+  - Total Images: 2,148
+  - Classes: 2 (Kirmizi_Pistachio: 1,232, Siirt_Pistachio: 916)
+  - Format: JPG, 600x600 RGB
+
+Feature Extraction:
+  - Method: GLCM (Gray-Level Co-occurrence Matrix)
+  - Features per image: 24 (6 properties x 4 angles)
+  - Output file: hasil_glcm.csv (1,016 KB)
+  - Processing time: ~5 minutes
+  - Success rate: 100% (0 errors)
+
+Data Quality:
+  - Missing values: 0
+  - Duplicates: 0
+  - Data types: All correct
+  - Ready for ML: YES
+
+================================================================================
+OUTPUT FILE DETAILS
+================================================================================
+
+File: hasil_glcm.csv
+Location: D:\KULIAH\Semester 6\Pemrograman Data Mining\data-mining-projects\pistachio-image-mining\hasil_glcm.csv
+
+Columns (26 total):
+  1. contrast_0
+  2. dissimilarity_0
+  3. homogeneity_0
+  4. energy_0
+  5. correlation_0
+  6. ASM_0
+  7. contrast_45
+  8. dissimilarity_45
+  9. homogeneity_45
+  10. energy_45
+  11. correlation_45
+  12. ASM_45
+  13. contrast_90
+  14. dissimilarity_90
+  15. homogeneity_90
+  16. energy_90
+  17. correlation_90
+  18. ASM_90
+  19. contrast_135
+  20. dissimilarity_135
+  21. homogeneity_135
+  22. energy_135
+  23. correlation_135
+  24. ASM_135
+  25. filename
+  26. class
+
+================================================================================
+USAGE EXAMPLES
+================================================================================
+
+Python Example:
+--------------
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
+
+# Load data
+df = pd.read_csv('hasil_glcm.csv')
+
+# Prepare features and labels
+X = df.drop(['filename', 'class'], axis=1)
+y = df['class']
+
+# Split data
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42, stratify=y
+)
+
+# Train model
+model = RandomForestClassifier(n_estimators=100, random_state=42)
+model.fit(X_train, y_train)
+
+# Evaluate
+accuracy = model.score(X_test, y_test)
+print(f"Accuracy: {accuracy:.4f}")
+
+R Example:
+----------
+library(caret)
+library(randomForest)
+
+# Load data
+df <- read.csv('hasil_glcm.csv')
+
+# Prepare features and labels
+X <- df[, 1:24]
+y <- df$class
+
+# Split data
+set.seed(42)
+trainIndex <- createDataPartition(y, p=0.8, list=FALSE)
+X_train <- X[trainIndex, ]
+X_test <- X[-trainIndex, ]
+y_train <- y[trainIndex]
+y_test <- y[-trainIndex]
+
+# Train model
+model <- randomForest(x=X_train, y=y_train, ntree=100)
+
+# Predict
+predictions <- predict(model, X_test)
+confusionMatrix(predictions, y_test)
+
+================================================================================
+NEXT STEPS
+================================================================================
+
+1. Data Exploration:
+   - Visualize feature distributions
+   - Check correlations between features
+   - Compare feature values between classes
+
+2. Feature Engineering:
+   - Combine with pre-extracted morphological features (16 or 28)
+   - Apply PCA for dimensionality reduction
+   - Normalize features (StandardScaler)
+
+3. Model Building:
+   - Try different classifiers (SVM, Random Forest, XGBoost, Neural Networks)
+   - Use cross-validation
+   - Hyperparameter tuning
+
+4. Evaluation:
+   - Accuracy, Precision, Recall, F1-score
+   - ROC-AUC curves
+   - Confusion matrix
+
+================================================================================
+AVAILABLE DATASETS
+================================================================================
+
+1. hasil_glcm.csv (CREATED)
+   - 24 GLCM texture features
+   - Ready for machine learning
+
+2. Pistachio_16_Features_Dataset/
+   - 16 morphological + shape features
+   - Format: .xlsx, .arff
+
+3. Pistachio_28_Features_Dataset/
+   - 16 morphological + 12 color features
+   - Format: .xlsx, .arff
+
+4. Original Images/
+   - 2,148 raw images
+   - For additional feature extraction
+
+================================================================================
+CITATION
+================================================================================
+
+If using this dataset, please cite:
+OZKAN IA., KOKLU M. and SARACOGLU R. (2021). 
+Classification of Pistachio Species Using Improved K-NN Classifier. 
+Progress in Nutrition, Vol. 23, N. 2.
+
+================================================================================

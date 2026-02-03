@@ -1,0 +1,48 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+# Jupyter Notebook
+.ipynb_checkpoints
+*.ipynb_checkpoints/
+# Virtual Environment
+venv/
+env/
+ENV/
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+# Dataset (Terlalu besar untuk GitHub)
+Pistachio_Image_Dataset-*/
+*.zip
+*.jpg
+*.jpeg
+*.png
+!*.png  # Keep result visualizations, but ignore source images
+# Intermediate CSV files (hasil feature engineering)
+fe_*.csv
+hasil_glcm.csv
+# Keep only final results
+!model_results_*.csv
+# OS
+.DS_Store
+Thumbs.db

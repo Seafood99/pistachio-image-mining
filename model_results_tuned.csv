@@ -1,0 +1,4 @@
+Model,Accuracy,F1-Score,Best Params
+SVM (Tuned),0.827906976744186,0.8010752688172043,"{'C': 100, 'gamma': 'scale', 'kernel': 'linear'}"
+Random Forest (Tuned),0.8186046511627907,0.7868852459016393,"{'max_depth': None, 'min_samples_leaf': 1, 'min_samples_split': 10, 'n_estimators': 50}"
+KNN (Tuned),0.8348837209302326,0.8044077134986226,"{'metric': 'euclidean', 'n_neighbors': 15, 'weights': 'distance'}"
